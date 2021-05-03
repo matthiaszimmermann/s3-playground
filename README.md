@@ -22,6 +22,16 @@ tutorial: https://docs.min.io/docs/python-client-quickstart-guide
 
 `pip3 install minio`
 
+## use file_creator.py
+
+run the command below
+
+```
+python file_creator.py test-large.txt 350 1000000
+```
+
+this creates a 700mb text file with 1,000,000 lines which 350 random chars on every line
+
 ## use file_uploader.py
 
 run the command below
@@ -31,7 +41,7 @@ python file_uploader.py my-first-bucket test.txt helloworld.txt
 ```
 
 this will:
-1. create a bucket 'my-first-bucket' 
+1. create a bucket 'my-first-bucket'
 2. create the object 'test.txt' (with the identical content of file helloworld.txt)
 
 the output of the command should look like this
@@ -48,7 +58,6 @@ name: test.txt, is_dir: False, size: 13, last_modified: 2021-04-13 12:04:37.9090
 the [etag](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html) is the content md5 hash in many (but not all) cases.
 
 ```
-md5 helloworld.txt 
+md5 helloworld.txt
 MD5 (helloworld.txt) = 8247fe786a6173b2ad5bb1f099d21ac1
 ```
-
