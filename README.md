@@ -22,7 +22,7 @@ tutorial: https://docs.min.io/docs/python-client-quickstart-guide
 
 `pip3 install minio`
 
-## use file_creator.py
+## use file_creator.py
 
 run the command below
 
