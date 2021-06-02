@@ -61,3 +61,26 @@ the [etag](https://docs.aws.amazon.com/AmazonS3/latest/API/API_Object.html) is t
 md5 helloworld.txt
 MD5 (helloworld.txt) = 8247fe786a6173b2ad5bb1f099d21ac1
 ```
+
+## access minio server from within other container
+
+build container for minio_client.py
+
+```
+docker build -t minio_test .
+```
+
+run container in interactive mode
+
+```
+docker run --network="host" --rm -it minio_test
+```
+
+then inside the container (command line should show as /usr/src/app #)
+
+```
+python minio_client.py my-first-bucket prefix
+exit
+```
+
+this should list all objects in bucket 'my-first-bucket' with an object name starting with 'prefix'
