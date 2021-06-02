@@ -70,10 +70,12 @@ build container for minio_client.py
 docker build -t minio_test .
 ```
 
-run container in interactive mode
+run container in interactive mode (provide local ip directly or via some additional trickery)
 
 ```
-docker run --network="host" --rm -it minio_test
+docker run --rm -e HOST_IP=<your machine's ip> -it minio_test
+docker run --rm -e HOST_IP=$(ip -o route get to 8.8.8.8 | sed -n 's/.*src \([0-9.]\+\).*/\1/p') -it mini
+o_test
 ```
 
 then inside the container (command line should show as /usr/src/app #)

@@ -1,3 +1,4 @@
+import os
 import re
 import sys
 
@@ -6,7 +7,12 @@ from minio.error import S3Error
 
 CMD_LINE_ARGS = "s3-bucket path-prefix [hostname access-key secret-key]"
 
-MINIO_HOSTNAME = "127.0.0.1:9000"
+host_ip = '127.0.0.1'
+if os.environ['HOST_IP']:
+    host_ip = os.environ['HOST_IP']
+
+MINIO_PORT = "9000"
+MINIO_HOSTNAME = "{}:9000".format(host_ip)
 MINIO_ACCESS_KEY = "AKIAIOSFODNN7EXAMPLE"
 MINIO_SECRET_KEY = "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY"
 
@@ -48,6 +54,7 @@ def main():
     # create minio client
     print("creating minio client connecting to host {host}".format(host = host_name))
     client = Minio(host_name, access_key=username, secret_key=secret, secure=False)
+    print("minio client created: {}".format(client))
 
     print("all objects with prefix '{0}':".format(path_prefix))
     for s3o in client.list_objects(bucket_name, prefix=path_prefix):
